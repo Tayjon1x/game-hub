@@ -1,45 +1,73 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Game Hub</title>
 
   <style>
-
     body {
-
       margin: 0;
-
-      font-family: Arial;
-
+      font-family: Arial, sans-serif;
       background: #0d1224;
-
       color: white;
-
-      text-align: center;
-
     }
 
     header {
-
       background: #171f3b;
-
       padding: 25px;
-
+      text-align: center;
     }
 
     h1 {
-
       font-size: 40px;
-
+      margin: 0;
     }
 
     .games {
-
       display: flex;
-
       flex-wrap: wrap;
-
       justify-content: center;
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .game {
+      background: #202b4d;
+      padding: 25px;
+      border-radius: 15px;
+      width: 220px;
+      text-align: center;
+    }
+
+    button {
+      background: #6c63ff;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎮 Game Hub</h1>
+  <p>Pick a game and play!</p>
+</header>
+
+<div class="games">
+
+  <div class="game">
+    <h2>My First Game</h2>
+    <p>Game coming soon!</p>
+    <button onclick="alert('Game coming soon!')">
+      PLAY
+    </button>
+  </div>
+
+</div>
+
+</body>
+</html>
