@@ -68,11 +68,10 @@
     </button>
 
     <div id="slope" style="display:none; margin-top:20px;">
-  <canvas id="slopeGame" width="600" height="400"
-    style="max-width:100%; background:#111; border-radius:12px;">
-  </canvas>
+<iframe src="https://slope-3.bitbucket.io/" width="800" height="600" frameborder="0" scrolling="no" allowfullscreen></iframe>
 
-  <p>Use ← → to move. Avoid the blocks!</p>
+
+  
 
   <button onclick="closeGame('slope')">CLOSE GAME</button>
 </div>
@@ -85,10 +84,7 @@
 function openGame(id) {
   document.getElementById(id).style.display = "block";
 
-  if (id === "slope") {
-    startSlope();
-  }
-}
+  
 
 function closeGame(id) {
   document.getElementById(id).style.display = "none";
