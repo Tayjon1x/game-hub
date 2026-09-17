@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">🎮 Game Hub</div>
+    <input id="search" type="search" placeholder="Search games...">
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">MY GAME COLLECTION</p>
+        <h1>Pick a game and play.</h1>
+        <p>Add your own browser games and keep them organized in one place.</p>
+      </div>
+      <button id="addGameBtn">+ Add Game</button>
+    </section>
+
+    <div id="gameGrid" class="game-grid"></div>
+    <p id="empty" class="empty hidden">No games found.</p>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <button class="close" id="closeModal">×</button>
+      <h2>Add a game</h2>
+      <p class="muted">Add a browser-playable game URL or a local HTML file path.</p>
+
+      <label>Game name
+        <input id="gameName" placeholder="My Game">
+      </label>
+
+      <label>Game URL
+        <input id="gameUrl" placeholder="https://example.com/game">
+      </label>
+
+      <label>Thumbnail URL (optional)
+        <input id="gameImage" placeholder="https://example.com/image.jpg">
+      </label>
+
+      <button class="primary" id="saveGame">Add Game</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
