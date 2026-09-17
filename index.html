@@ -68,13 +68,117 @@
     </button>
 
     <div id="slope" style="display:none; margin-top:20px;">
-      <p>Slope will open here.</p>
-    </div>
+  <canvas id="slopeGame" width="600" height="400"
+    style="max-width:100%; background:#111; border-radius:12px;">
+  </canvas>
+
+  <p>Use ← → to move. Avoid the blocks!</p>
+
+  <button onclick="closeGame('slope')">CLOSE GAME</button>
+</div>
   </div>
 
 </div>
 
 </div>
+<script>
+function openGame(id) {
+  document.getElementById(id).style.display = "block";
 
+  if (id === "slope") {
+    startSlope();
+  }
+}
+
+function closeGame(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+function startSlope() {
+  const canvas = document.getElementById("slopeGame");
+  const ctx = canvas.getContext("2d");
+
+  let playerX = 300;
+  let playerY = 330;
+  let speed = 4;
+  let left = false;
+  let right = false;
+  let gameOver = false;
+
+  let blocks = [
+    {x: 100, y: -50, w: 70, h: 30},
+    {x: 400, y: -250, w: 70, h: 30},
+    {x: 250, y: -450, w: 70, h: 30}
+  ];
+
+  document.onkeydown = function(e) {
+    if (e.key === "ArrowLeft") left = true;
+    if (e.key === "ArrowRight") right = true;
+  };
+
+  document.onkeyup = function(e) {
+    if (e.key === "ArrowLeft") left = false;
+    if (e.key === "ArrowRight") right = false;
+  };
+
+  function gameLoop() {
+    if (gameOver) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Track
+    ctx.fillStyle = "#222";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Player
+    if (left) playerX -= 6;
+    if (right) playerX += 6;
+
+    playerX = Math.max(15, Math.min(canvas.width - 15, playerX));
+
+    ctx.fillStyle = "#6c63ff";
+    ctx.beginPath();
+    ctx.arc(playerX, playerY, 15, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Blocks
+    ctx.fillStyle = "#ff4444";
+
+    for (let block of blocks) {
+      block.y += speed;
+
+      ctx.fillRect(block.x, block.y, block.w, block.h);
+
+      if (
+        playerX + 15 > block.x &&
+        playerX - 15 < block.x + block.w &&
+        playerY + 15 > block.y &&
+        playerY - 15 < block.y + block.h
+      ) {
+        gameOver = true;
+
+        ctx.fillStyle = "white";
+        ctx.font = "35px Arial";
+        ctx.fillText("GAME OVER", 190, 200);
+
+        ctx.font = "18px Arial";
+        ctx.fillText("Refresh to play again", 210, 235);
+
+        return;
+      }
+
+      if (block.y > canvas.height) {
+        block.y = -50;
+        block.x = Math.random() * (canvas.width - block.w);
+      }
+    }
+
+    requestAnimationFrame(gameLoop);
+  }
+
+  gameLoop();
+}
+</script>
+  
 </body>
 </html>
